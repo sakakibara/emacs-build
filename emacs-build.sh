@@ -96,7 +96,7 @@ function ensure_mingw_build_software ()
         echo Giving up
         exit -1
     fi
-    if [ -z `which git 2>&1` ]; then
+    if ! command -v git &>/dev/null; then
         echo Installing Git for MSYS2
         pacman -S --noconfirm --needed git
         if test "$?" != 0; then
