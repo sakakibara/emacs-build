@@ -444,7 +444,7 @@ emacs_build_install_dir="$emacs_build_root/pkg"
 emacs_build_zip_dir="$emacs_build_root/zips"
 emacs_strip_executables="no"
 
-CFLAGS="-O2"
+CFLAGS="-O3 -fno-math-errno -funsafe-math-optimizations -fno-finite-math-only -fno-trapping-math -freciprocal-math -fno-rounding-math -fno-signaling-nans -fassociative-math -fno-signed-zeros -frename-registers -funroll-loops -mtune=native -march=native -fomit-frame-pointer -fallow-store-data-races  -fno-semantic-interposition -floop-parallelize-all -ftree-parallelize-loops=4"
 
 while test -n "$*"; do
     case $1 in
