@@ -51,6 +51,9 @@ if (!(Test-Path "$msys2_dir\msys2_shell.cmd"))
     Write-Output "Unpack MSYS2"
     & $installer -y
 
+    $post_key_file = Join-Path $msys2_dir "etc" "post-install" "07-pacman-key.post"
+    ((Get-Content -Path $post_key_file -Raw) -replace '--refresh-keys', '--version') | Set-Content -Path $post_key_file
+
     Set-Location $emacs_build_dir
     # Reduce time required to install packages by disabling pacman's disk space checking
     .\scripts\msys2.cmd -c 'sed -i "s/^CheckSpace/#CheckSpace/g" /etc/pacman.conf'
